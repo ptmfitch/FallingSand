@@ -16,28 +16,40 @@ public class World {
         chunks = initialiseChunks();
     }
 
-    public addCell(int x, int y, int type) {
+    public void update() {
+        for (ArrayList<Chunk> row : chunks) {
+            for (Chunk chunk : row) {
+                chunk.update();
+            }
+        }
+    }
 
+    public void addCell(int x, int y, int type) {
+        getChunkFromPos(x, y).addCell(x, y, type);
     }
 
     private Chunk getChunkFromPos(int x, int y) {
-        chunks.get()
+        System.out.print(x);
+        System.out.print(y);
+        return chunks.get(x/(w*px)).get(y/(h*px));
     }
 
     private ArrayList<ArrayList<Chunk>> initialiseChunks() {
 
-        ArrayList<ArrayList<Chunk>> cs = new ArrayList<>();
+        ArrayList<ArrayList<Chunk>> newChunks = new ArrayList<>();
         int x = oX, y = oY;
-
+        ArrayList<Chunk> row;
         for (int i = 0; i < w; i++) {
             x += px;
+            row  = new ArrayList<>();
             for (int j = 0; j < h; j++) {
                 y += px;
-                chunks.get(i).add(new Chunk(sketch, x, y, px));
+                row.add(new Chunk(sketch, x, y, px));
             }
+            newChunks.add(row);
         }
 
-        return cs;
+        return newChunks;
 
     }
 
