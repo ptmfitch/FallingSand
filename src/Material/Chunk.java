@@ -6,11 +6,13 @@ import java.util.ArrayList;
 
 import static processing.core.PConstants.RIGHT;
 
-public class Grid {
-    private ArrayList<Cell> cells;
+public class Chunk {
     private PApplet sketch;
-    public Grid(PApplet s) {
+    private int oX, oY, px;
+    private ArrayList<Cell> cells;
+    public Chunk(PApplet s, int x, int y, int p) {
         sketch = s;
+        oX = x; oY = y; px = p;
         cells = new ArrayList<>();
     }
     public void addCell(int x, int y, int type) {

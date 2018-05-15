@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class Cell {
 
-    private PApplet sketch;
-    private int x, y;
+    PApplet sketch;
+    int x, y;
     private ArrayList<Cell> neighbours;
 
     Cell(PApplet s, int col, int row) {

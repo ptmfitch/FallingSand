@@ -1,21 +1,23 @@
-import Material.Grid;
+import Material.Chunk;
+import Material.World;
 import processing.core.PApplet;
 
 public class FallingSand extends PApplet {
 
+    private int CHUNK_SIZE = 32;
+    private int GRID_H = 4;
+    private int GRID_W = 4;
+
     public void settings(){
-        size(32, 32);
+        size(CHUNK_SIZE * GRID_W, CHUNK_SIZE * GRID_H);
     }
 
-    private Grid grid;
+    private World world;
     private int brushSize;
 
     public void setup() {
         brushSize = 4;
-        grid = new Grid(this);
-        for (int i = 0; i < width; i++) {
-            grid.addCell(i, height - 10, RIGHT);
-        }
+        world = new World(this, 0, 0, GRID_H, GRID_W, CHUNK_SIZE);
     }
 
     public void draw(){
@@ -26,10 +28,10 @@ public class FallingSand extends PApplet {
             int type = mouseButton;
             for (int i = mouseX - brushHalf; i <= mouseX + brushHalf; i++)
                 for (int j = mouseY - brushHalf; j <= mouseY + brushHalf; j++) {
-                    grid.addCell(i, j, type);
+                    world.addCell(i, j, type);
                 }
         }
-        grid.update();
+        world.update();
 //        println(frameRate);
     }
 

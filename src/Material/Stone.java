@@ -14,7 +14,9 @@ public class Stone extends Cell {
 
     @Override
     public void display() {
-
+        super.sketch.noStroke();
+        super.sketch.fill(100);
+        super.sketch.rect(x, y, 1, 1);
     }
 
 }
